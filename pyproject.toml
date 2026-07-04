@@ -1,0 +1,30 @@
+[project]
+name = "aibusy"
+version = "0.0.1"
+description = "AI but symple - Base Module"
+authors = [
+    {name = "danialcala94", email = "danielalcalavalera@gmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.10,<3.12"
+
+[tool.poetry.dependencies]
+# Mandatory
+# ai-simple-engine-common = { version = ">=0.0.3,<1.0.0", optional = false }
+# Optional
+
+[tool.poetry]
+packages = [{include = "aibusy", from = "src"}]
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.3.5"
+
+[tool.pytest.ini_options]
+markers = [
+    "mandatory: mandatory tests for release",
+    "additional: exhaustive and demanding tests"
+]
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
