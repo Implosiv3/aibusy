@@ -3,17 +3,23 @@ from aibusy.engine.execution.asset.spec.abstract import AssetSpec
 from abc import ABC, abstractmethod
 
 
-
 class AssetRepository(
     ABC
 ):
     """
-    Resolves AssetSpecs into InstalledAssets.
+    Resolve `AssetSpec` into `InstalledAsset`,
+    installing if needed.
     """
 
     @abstractmethod
-    async def resolve(
+    async def install(
         self,
         spec: AssetSpec
     ) -> InstalledAsset:
+        """
+        Return an InstalledAsset for the given AssetSpec.
+
+        If the asset is not already installed, install it
+        before returning it.
+        """
         ...

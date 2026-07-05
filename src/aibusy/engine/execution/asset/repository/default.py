@@ -7,6 +7,11 @@ from aibusy.engine.execution.asset.installer.collection import AssetInstallerCol
 class DefaultAssetRepository(
     AssetRepository
 ):
+    """
+    Resolve `AssetSpec` into `InstalledAsset`,
+    installing if needed, with the `installers`
+    provided.
+    """
 
     def __init__(
         self,
@@ -14,11 +19,19 @@ class DefaultAssetRepository(
         installers: AssetInstallerCollection
     ):
         self._installers = installers
+        self._installed: dict[AssetSpec, InstalledAsset]
 
-    async def resolve(
+    async def install(
         self,
         spec: AssetSpec
     ) -> InstalledAsset:
+        if spec in self._installed:
+            return self._installed[spec]
+
         installer = self._installers.get(type(spec))
 
-        return await installer.install(spec)
+        installed = await installer.install(spec)
+
+        self._installed[spec] = installed
+
+        return installed

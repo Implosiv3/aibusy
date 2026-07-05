@@ -8,6 +8,10 @@ from aibusy.graph.data_type.abstract import DataType
 from aibusy.graph.data_type.custom_classes.audio import Audio
 from aibusy.graph.data_type.custom_classes.image import Image
 from aibusy.graph.data_type.custom_classes.video import Video
+from aibusy.engine.execution.asset.spec.abstract import AssetSpec
+from aibusy.engine.execution.asset.installed import InstalledAsset
+from aibusy.runtime.resource.abstract import Resource
+from aibusy.runtime.resource.spec.abstract import ResourceSpec
 from aibusy.runtime.device import Device
 from pathlib import Path
 
@@ -45,24 +49,24 @@ PATH = DataType(
 )
 
 # Specific internal
-RESOURCE_HANDLE = DataType(
-    name = 'ResourceHandle',
-    runtime_type = ResourceHandle,
+ASSET_SPEC = DataType(
+    name = 'AssetSpec',
+    runtime_type = AssetSpec,
     parent = None
 )
-INSTALLED_MODEL = DataType(
-    name = 'InstalledModel',
-    runtime_type = InstalledModel,
+INSTALLED_ASSET = DataType(
+    name = 'InstalledAsset',
+    runtime_type = InstalledAsset,
     parent = None
 )
-LOADED_MODEL = DataType(
-    name = 'LoadedModel',
-    runtime_type = LoadedModel,
+RESOURCE_SPEC = DataType(
+    name = 'ResourceSpec',
+    runtime_type = ResourceSpec,
     parent = None
 )
-MODEL_SPEC = DataType(
-    name = 'ModelSpec',
-    runtime_type = ModelSpec,
+RESOURCE_INSTANCE = DataType(
+    name = 'ResourceInstance',
+    runtime_type = Resource,
     parent = None
 )
 

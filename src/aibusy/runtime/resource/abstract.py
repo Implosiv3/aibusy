@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 from typing import Generic, TypeVar
 
-T = TypeVar("T")
+T = TypeVar('T')
 
 
 class Resource(
@@ -9,8 +9,9 @@ class Resource(
     ABC
 ):
     """
-    Represents something that knows how to
-    create and destroy a runtime instance.
+    The class capable of creating and
+    destroying a runtime instance of the
+    resource itself.
     """
 
     @abstractmethod

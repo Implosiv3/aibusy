@@ -6,16 +6,20 @@ from abc import ABC, abstractmethod
 class ResourceBuilder(
     ABC
 ):
+    """
+    Build a `Resource` instance from the
+    `resource_spec` provided.
+    """
 
     @property
     @abstractmethod
-    def resource_type(
+    def spec_type(
         self,
     ) -> type[ResourceSpec]:
         ...
 
     @abstractmethod
-    def create(
+    def build(
         self,
         spec: ResourceSpec
     ) -> Resource:

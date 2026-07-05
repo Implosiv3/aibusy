@@ -1,35 +1,46 @@
 from aibusy.engine.execution.resource.resolver.abstract import ResourceResolver
 from aibusy.engine.execution.resource.manager import ExecutionResourceManager
 from aibusy.runtime.resource.spec.abstract import ResourceSpec
-from aibusy.engine.execution.asset.repository.abstract import AssetRepository
 from aibusy.runtime.resource.builder.collection import ResourceBuilderCollection
 
 
 class DefaultResourceResolver(
     ResourceResolver
 ):
+    """
+    Resolve a `ResourceSpec` to an instance of
+    that resource, using the `resource_builders`
+    provided.
+    """
 
     def __init__(
         self,
         *,
-        # asset_repository: AssetRepository,
-        resource_builders: ResourceBuilderCollection
+        resource_builders: ResourceBuilderCollection,
+        resource_manager: ExecutionResourceManager
     ):
-        # self._asset_repository = asset_repository
-        self._manager = ExecutionResourceManager()
         self._builders = resource_builders
+        self._manager = resource_manager
 
     async def resolve(
         self,
         spec: ResourceSpec
     ):
+        instance = self._manager.get_instance(spec)
+
+        if instance is not None:
+            return instance
+
         builder = self._builders.get(type(spec))
 
-        resource = builder.create(spec)
+        resource = await builder.build(spec)
 
-        # handle = await self._resource_manager.register(resource)
+        instance = await resource.load()
 
-        return await self._manager.resolve(
-            spec = spec,
-            resource = resource
+        self._manager.store(
+            spec,
+            resource,
+            instance,
         )
+
+        return instance

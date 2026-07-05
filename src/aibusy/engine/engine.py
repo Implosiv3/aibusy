@@ -3,6 +3,7 @@ from aibusy.engine.execution.context import ExecutionContext
 from aibusy.graph.builder import GraphBuilder
 from aibusy.graph.classes.port_reference import PortReference
 from aibusy.engine.context.engine import EngineContext
+from aibusy.engine.cache.memory_cache import MemoryCache
 
 
 class Engine:
@@ -30,8 +31,9 @@ class Engine:
         build = self._graph_builder.build(targets)
 
         context = ExecutionContext(
-            engine = self._engine,
-            cache = self._cache,
+            engine = self._context,
+            # TODO: I don't know if this should be here
+            cache = MemoryCache(),
         )
 
         await self._executor.run(

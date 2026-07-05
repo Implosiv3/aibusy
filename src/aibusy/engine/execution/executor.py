@@ -9,7 +9,7 @@ from aibusy.engine.execution.context import ExecutionContext
 from aibusy.engine.execution.operation_runner.abstract import OperationRunner
 from aibusy.engine.execution.runtime.value_resolver.abstract import RuntimeValueResolver
 from collections.abc import Mapping, Sequence
-from typing import Iterable
+from typing import Iterable, Union
 
 
 class Executor:
@@ -33,7 +33,7 @@ class Executor:
 
     async def run(
         self,
-        targets: PortReference | Iterable[PortReference],
+        targets: Union[PortReference, Iterable[PortReference]],
         context: ExecutionContext
     ) -> ExecutionContext:
         build = self._graph_builder.build(targets)
@@ -49,7 +49,7 @@ class Executor:
             )
 
         # Execution has finished: release resources
-        await context.resources.release_all()
+        await context.resource_manager.release_all()
 
         return context
     

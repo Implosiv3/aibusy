@@ -5,6 +5,10 @@ from abc import ABC, abstractmethod
 class ResourceResolver(
     ABC
 ):
+    """
+    Resolve a `ResourceSpec` to an instance of
+    that resource.
+    """
 
     @abstractmethod
     async def resolve(

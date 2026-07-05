@@ -5,7 +5,8 @@ from aibusy.runtime.resource.spec.abstract import ResourceSpec
 class ExecutionResourceManager:
     """
     Class to handle the different resources and
-    their instances.
+    their instances to avoid loading the same
+    resource into memory more than once.
     """
 
     def __init__(
@@ -13,38 +14,21 @@ class ExecutionResourceManager:
     ):
         self._resources: dict[ResourceSpec, Resource] = {}
         self._instances: dict[ResourceSpec, object] = {}
-    
-    async def resolve(
+
+    def get_instance(
         self,
         spec: ResourceSpec,
-        resource: Resource
     ):
-        """
-        Try to find the instance of the `Resource`
-        associated to the `key` that is in the
-        `handle` given, or load the resource, creating
-        the first instance, and return it.
+        return self._instances.get(spec)
 
-        From `ResourceHandle` to `Resource` instance.
-        """
-        if spec in self._instances:
-            return self._instances[spec]
-
-        instance = await resource.load()
-
+    def store(
+        self,
+        spec: ResourceSpec,
+        resource: Resource,
+        instance,
+    ):
         self._resources[spec] = resource
         self._instances[spec] = instance
-
-        return instance
-    
-    # async def release(
-    #     self,
-    #     spec: ResourceSpec
-    # ):
-    #     instance = self._instances[spec]
-    #     resource = self._resources[spec]
-
-    #     await resource.unload(instance)
 
     async def release_all(
         self

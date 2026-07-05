@@ -1,5 +1,7 @@
 from aibusy.engine.context.engine import EngineContext
 from aibusy.graph.operation.abstract.base import Operation
+from aibusy.engine.execution.resource.manager import ExecutionResourceManager
+from aibusy.engine.execution.resource.resolver.default import DefaultResourceResolver
 from aibusy.engine.cache import Cache
 from uuid import UUID
 
@@ -32,6 +34,17 @@ class ExecutionContext:
         """
         Execution cache.
         """
+        self.resource_manager = ExecutionResourceManager()
+        """
+        Execution-local resource manager.
+        """
+        self.resources = DefaultResourceResolver(
+            builders = self.engine.resource_builders,
+            manager = self.resource_manager,
+        )
+        """
+        Execution-local resource resolver.
+        """
         self._operation_outputs: dict[UUID, dict[str, object]] = {}
 
     @property
@@ -45,6 +58,18 @@ class ExecutionContext:
         self
     ):
         return self.engine.services
+    
+    @property
+    def assets(
+        self
+    ):
+        return self.engine.assets
+
+    @property
+    def schedulers(
+        self
+    ):
+        return self.engine.schedulers
 
     def has_result(
         self,

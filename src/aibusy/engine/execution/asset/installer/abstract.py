@@ -6,6 +6,10 @@ from abc import ABC, abstractmethod
 class AssetInstaller(
     ABC
 ):
+    """
+    Install an asset depending on the
+    `spec_type`.
+    """
 
     spec_type: type[AssetSpec]
 

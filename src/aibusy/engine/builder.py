@@ -8,6 +8,9 @@ from aibusy.engine.execution.operation_runner.abstract import OperationRunner
 from aibusy.engine.execution.executor import Executor
 from aibusy.engine.execution.runtime.value_resolver.port_reference_resolver import PortReferenceRuntimeValueResolver
 from aibusy.engine.execution.runtime.value_resolver.abstract import RuntimeValueResolver
+from aibusy.engine.execution.asset.repository.default import DefaultAssetRepository
+# from aibusy.engine.execution.resource.resolver.default import DefaultResourceResolver
+from aibusy.engine.execution.resource.manager import ExecutionResourceManager
 from aibusy.engine.settings import EngineSettings
 from aibusy.engine.plugin.context import PluginContext
 from typing import Callable, Union
@@ -52,6 +55,9 @@ class EngineBuilder:
         self._graph_builder = GraphBuilder()
         # TODO: How to handle this properly (?) Collection (?)
         self._registered_plugins = {}
+        
+        # Add basic RuntimeValueResolver
+        self.runtime_value_resolvers.register(PortReferenceRuntimeValueResolver)
 
         self._instantiate_executor()
 
@@ -150,22 +156,21 @@ class EngineBuilder:
 
         self._configure_components(plugin_context)
 
-        from aibusy.engine.execution.asset.repository.default import DefaultAssetRepository
-        from aibusy.engine.execution.resource.resolver.default import DefaultResourceResolver
-
         asset_repository = DefaultAssetRepository(
             installers = self._assets_installers
         )
 
-        resource_resolver = DefaultResourceResolver(
-            builders = self._resources_builders,
-        )
+        # resource_resolver = DefaultResourceResolver(
+        #     resource_manager = ExecutionResourceManager(),
+        #     resource_builders = self._resources_builders,
+        # )
 
         return EngineContext(
             settings = self.settings,
             services = self.services,
             assets = asset_repository,
-            resources = resource_resolver,
+            # resources = resource_resolver,
+            resource_builders = self._resources_builders,
             schedulers = self.schedulers,
         )
     
