@@ -1,7 +1,7 @@
 from aibusy.engine.execution.asset.repository.abstract import AssetRepository
 from aibusy.engine.execution.asset.spec.abstract import AssetSpec
 from aibusy.engine.execution.asset.installed import InstalledAsset
-from aibusy.engine.context.collection.classes import AssetInstallerCollection
+from aibusy.engine.execution.asset.installer.collection import AssetInstallerCollection
 
 
 class DefaultAssetRepository(

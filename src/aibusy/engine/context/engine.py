@@ -1,5 +1,5 @@
 from aibusy.engine.settings import EngineSettings
-from aibusy.engine.context.collection.classes import SchedulerCollection
+from aibusy.runtime.scheduler.collection import SchedulerCollection
 from aibusy.engine.execution.resource.resolver.abstract import ResourceResolver
 from aibusy.engine.execution.asset.repository.abstract import AssetRepository
 from aibusy.service.container import ServiceContainer

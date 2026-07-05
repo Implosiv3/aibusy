@@ -2,7 +2,7 @@ from aibusy.engine.execution.resource.resolver.abstract import ResourceResolver
 from aibusy.engine.execution.resource.manager import ExecutionResourceManager
 from aibusy.runtime.resource.spec.abstract import ResourceSpec
 from aibusy.engine.execution.asset.repository.abstract import AssetRepository
-from aibusy.engine.context.collection.classes import ResourceBuilderCollection
+from aibusy.runtime.resource.builder.collection import ResourceBuilderCollection
 
 
 class DefaultResourceResolver(

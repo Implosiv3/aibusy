@@ -37,7 +37,10 @@ class EngineBuilder:
         self
     ):
         from aibusy.service.container import ServiceContainer
-        from aibusy.engine.context.collection.classes import SchedulerCollection, RuntimeValueResolverCollection, ResourceBuilderCollection, AssetInstallerCollection
+        from aibusy.engine.execution.asset.installer.collection import AssetInstallerCollection
+        from aibusy.runtime.scheduler.collection import SchedulerCollection
+        from aibusy.runtime.resource.builder.collection import ResourceBuilderCollection
+        from aibusy.engine.execution.runtime.value_resolver.collection import RuntimeValueResolverCollection
 
         self.services = ServiceContainer()
         self.schedulers = SchedulerCollection()
