@@ -2,7 +2,7 @@ from aibusy.engine.settings import EngineSettings
 from aibusy.engine.context.collection.classes import ModelBackendCollection, ModelLoaderCollection, SchedulerCollection
 from aibusy.engine.execution.resource.resolver.abstract import ResourceResolver
 from aibusy.engine.execution.asset.repository.abstract import AssetRepository
-from aibusy.engine.context.services import Services
+from aibusy.classes.service.container import ServiceContainer
 
 
 class EngineContext:
@@ -18,7 +18,7 @@ class EngineContext:
         self,
         *,
         settings: EngineSettings,
-        services: Services,
+        services: ServiceContainer,
         # TODO: Why Repo here and Resolver in the other
         assets: AssetRepository,
         resources: ResourceResolver,
@@ -32,8 +32,7 @@ class EngineContext:
         """
         self.services = services
         """
-        The services we have in the engine. Including:
-        - `model_executors`
+        The services we have in the engine.
         """
         self.assets = assets
         """

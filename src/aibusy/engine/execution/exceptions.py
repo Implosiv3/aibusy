@@ -1,4 +1,6 @@
-class ConnectionError:
+class ConnectionError(
+    Exception
+):
 
     ...
 
@@ -10,6 +12,8 @@ class ExecutionError(
     ...
 
 
-class ValidationError:
+class ValidationError(
+    Exception
+):
     
     ...

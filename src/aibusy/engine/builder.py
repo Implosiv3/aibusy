@@ -38,10 +38,10 @@ class EngineBuilder:
     def __init__(
         self
     ):
-        from aibusy.engine.context.services import Services
+        from aibusy.classes.service.container import ServiceContainer
         from aibusy.engine.context.collection.classes import ModelLoaderCollection, ModelBackendCollection, SchedulerCollection, RuntimeValueResolverCollection, ResourceBuilderCollection, AssetInstallerCollection
 
-        self.services = Services()
+        self.services = ServiceContainer()
         self.model_loaders = ModelLoaderCollection()
         self.model_backends = ModelBackendCollection()
         self.schedulers = SchedulerCollection()
@@ -51,6 +51,8 @@ class EngineBuilder:
 
         self._operation_runner = LocalOperationRunner()
         self._graph_builder = GraphBuilder()
+        # TODO: How to handle this properly (?) Collection (?)
+        self._registered_plugins = {}
 
         self._instantiate_executor()
 
@@ -99,7 +101,21 @@ class EngineBuilder:
         self,
         plugin: Plugin
     ) -> 'EngineBuilder':
+        """
+        Add the `plugin` provided with the
+        dependencies (if existing), that will
+        be installed before the plugin itself.
+        """
         self._ensure_not_built()
+
+        for plugin_type in plugin.dependencies:
+            self.add_plugin(
+                plugin_type()
+            )
+
+        if plugin_type in self._registered_plugins:
+            # TODO: Maybe just 'pass'
+            raise Exception(f'The "{plugin_type}" plugin is already installed.')
 
         plugin.register(self)
 

@@ -11,6 +11,12 @@ class Plugin(
     backends, data types, operations, etc. that
     this plugin (extra functionality) includes.
     """
+
+    @property
+    def dependencies(
+        self
+    ) -> tuple[type['Plugin'], ...]:
+        return ()
     
     @abstractmethod
     def register(
