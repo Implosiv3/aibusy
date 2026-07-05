@@ -1,0 +1,107 @@
+"""
+All the `DataType` classes we have in
+our system. We can have more classes in
+the specific projects that implement a
+new functionality and runtime.
+"""
+from aibusy.graph.data_type.abstract import DataType
+from aibusy.graph.data_type.custom_classes.audio import Audio
+from aibusy.graph.data_type.custom_classes.image import Image
+from aibusy.graph.data_type.custom_classes.video import Video
+from aibusy.engine.execution.resource.handle import ResourceHandle
+from aibusy.engine.execution.resource.classes.model_resource import ModelResource
+from aibusy.model.classes.installed import InstalledModel
+from aibusy.model.classes.loaded import LoadedModel
+from aibusy.model.loader.abstract import ModelLoader
+from aibusy.model.spec import ModelSpec
+from aibusy.classes.device import Device
+from pathlib import Path
+
+
+# Basic pythonic types
+STRING = DataType(
+    name = 'String',
+    runtime_type = str,
+    parent = None
+)
+FLOAT = DataType(
+    name = 'Float',
+    runtime_type = float,
+    parent = None
+)
+INT = DataType(
+    name = 'Int',
+    runtime_type = int,
+    parent = None
+)
+BOOLEAN = DataType(
+    name = 'Boolean',
+    runtime_type = bool,
+    parent = None
+)
+OBJECT = DataType(
+    name = 'Object',
+    runtime_type = object,
+    parent = None
+)
+PATH = DataType(
+    name = 'Path',
+    runtime_type = Path,
+    parent = None
+)
+
+# Specific internal
+RESOURCE_HANDLE = DataType(
+    name = 'ResourceHandle',
+    runtime_type = ResourceHandle,
+    parent = None
+)
+INSTALLED_MODEL = DataType(
+    name = 'InstalledModel',
+    runtime_type = InstalledModel,
+    parent = None
+)
+LOADED_MODEL = DataType(
+    name = 'LoadedModel',
+    runtime_type = LoadedModel,
+    parent = None
+)
+MODEL_RESOURCE = DataType(
+    name = 'ModelResource',
+    runtime_type = ModelResource,
+    parent = None
+)
+MODEL_LOADER = DataType(
+    name = 'ModelLoader',
+    runtime_type = ModelLoader,
+    parent = None
+)
+MODEL_SPEC = DataType(
+    name = 'ModelSpec',
+    runtime_type = ModelSpec,
+    parent = None
+)
+
+"""
+Specific wrapping types below
+"""
+AUDIO = DataType(
+    name = 'Audio',
+    runtime_type = Audio,
+    parent = None
+)
+DEVICE = DataType(
+    name = 'Device',
+    runtime_type = Device,
+    parent = None
+)
+IMAGE = DataType(
+    name = 'Image',
+    runtime_type = Image,
+    parent = None
+)
+VIDEO = DataType(
+    name = 'Video',
+    runtime_type = Video,
+    parent = None
+)

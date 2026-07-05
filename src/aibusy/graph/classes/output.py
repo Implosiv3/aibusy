@@ -1,0 +1,22 @@
+from aibusy.graph.classes.port_reference import PortReference
+from aibusy.graph.classes.port import Port
+
+
+class Output(
+    Port
+):
+
+    def __get__(
+        self,
+        instance,
+        owner
+    ):
+        # From class
+        if instance is None:
+            return self
+
+        # From an instance
+        return PortReference(
+            operation = instance,
+            output = self
+        )

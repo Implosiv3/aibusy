@@ -1,0 +1,90 @@
+from aibusy.graph.operation.abstract.base import Operation
+from aibusy.graph.classes.port_reference import PortReference
+from collections.abc import Mapping, Sequence
+from hashlib import sha256
+from typing import Any
+
+
+class OperationFingerprintBuilder:
+    """
+    Class to build fingerprints of operations
+    to identify them using not only the
+    operation itself but also the previous that
+    will generate outputs that will reach this
+    operation.
+
+    If a previous operation changes, the output
+    could be different so also the inputs of
+    this one.
+    """
+
+    @staticmethod
+    def _serialize(
+        value: Any,
+        visited: set
+    ) -> bytes:
+        if isinstance(value, PortReference):
+            return OperationFingerprintBuilder._build(
+                value.operation,
+                visited
+            ).encode()
+
+        if isinstance(value, Mapping):
+            data = b""
+
+            for key in sorted(value):
+                data += key.encode()
+                data += OperationFingerprintBuilder._serialize(
+                    value[key],
+                    visited
+                )
+
+            return data
+
+        if (
+            isinstance(value, Sequence)
+            and not isinstance(value, (str, bytes))
+        ):
+
+            data = b""
+
+            for item in value:
+                data += OperationFingerprintBuilder._serialize(
+                    item,
+                    visited
+                )
+
+            return data
+
+        return repr(value).encode()
+
+    @staticmethod
+    def _build(
+        operation: Operation,
+        visited: set
+    ) -> str:
+        if operation in visited:
+            return str(operation.id)
+
+        visited.add(operation)
+
+        hasher = sha256()
+        hasher.update(operation.__class__.__qualname__.encode())
+
+        for input_name, _ in sorted(operation.inputs().items()):
+            value = getattr(operation, input_name)
+            hasher.update(input_name.encode())
+            hasher.update(
+                OperationFingerprintBuilder._serialize(
+                    value = value,
+                    visited = visited
+                )
+            )
+
+        return hasher.hexdigest()
+    
+    @staticmethod
+    def build(
+        operation: Operation
+    ) -> str:
+        return OperationFingerprintBuilder._build(operation, set())
