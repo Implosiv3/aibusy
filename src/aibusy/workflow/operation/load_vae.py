@@ -1,12 +1,12 @@
 from aibusy.graph.operation.abstract.base import Operation
 from aibusy.engine.execution.asset.installed import InstalledAsset
-from aibusy.classes.device import Device
-from aibusy.classes.torch_dtype import TorchDType
-from aibusy.engine.execution.runtime.interface.vae import VAE
+from aibusy.runtime.device import Device
+from aibusy.runtime.torch_dtype import TorchDType
+from aibusy.runtime.interface.vae import VAE
 from aibusy.engine.execution.context import ExecutionContext
 from aibusy.graph.classes.input import Input
 from aibusy.graph.classes.output import Output
-from aibusy.engine.execution.runtime.resource.spec.vae_resource_spec import VAEResourceSpec
+from aibusy.runtime.resource.spec.vae_resource_spec import VAEResourceSpec
 
 
 class LoadVAE(

@@ -28,8 +28,6 @@ class Plugin(
         given as parameter. The next things must be
         included:
         - Operations
-        - Model Backends
-        - Model Loaders
         - Data Types
         - Runtime Value Resolvers
         """

@@ -1,4 +1,4 @@
-from aibusy.engine.context import EngineContext
+from aibusy.engine.context.engine import EngineContext
 from aibusy.graph.operation.abstract.base import Operation
 from aibusy.engine.cache import Cache
 from uuid import UUID
@@ -39,18 +39,6 @@ class ExecutionContext:
         self
     ):
         return self.engine.settings
-
-    @property
-    def models(
-        self
-    ):
-        return self.engine.models
-
-    @property
-    def model_loaders(
-        self
-    ):
-        return self.engine.model_loaders
 
     @property
     def services(

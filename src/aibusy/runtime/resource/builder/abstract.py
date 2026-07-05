@@ -1,5 +1,5 @@
-from aibusy.engine.execution.resource.abstract import Resource
-from aibusy.engine.execution.resource.spec.abstract import ResourceSpec
+from aibusy.runtime.resource.abstract import Resource
+from aibusy.runtime.resource.spec.abstract import ResourceSpec
 from abc import ABC, abstractmethod
 
 

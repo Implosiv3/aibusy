@@ -8,13 +8,7 @@ from aibusy.graph.data_type.abstract import DataType
 from aibusy.graph.data_type.custom_classes.audio import Audio
 from aibusy.graph.data_type.custom_classes.image import Image
 from aibusy.graph.data_type.custom_classes.video import Video
-from aibusy.engine.execution.resource.handle import ResourceHandle
-from aibusy.engine.execution.resource.classes.model_resource import ModelResource
-from aibusy.model.classes.installed import InstalledModel
-from aibusy.model.classes.loaded import LoadedModel
-from aibusy.model.loader.abstract import ModelLoader
-from aibusy.model.spec import ModelSpec
-from aibusy.classes.device import Device
+from aibusy.runtime.device import Device
 from pathlib import Path
 
 
@@ -64,16 +58,6 @@ INSTALLED_MODEL = DataType(
 LOADED_MODEL = DataType(
     name = 'LoadedModel',
     runtime_type = LoadedModel,
-    parent = None
-)
-MODEL_RESOURCE = DataType(
-    name = 'ModelResource',
-    runtime_type = ModelResource,
-    parent = None
-)
-MODEL_LOADER = DataType(
-    name = 'ModelLoader',
-    runtime_type = ModelLoader,
     parent = None
 )
 MODEL_SPEC = DataType(

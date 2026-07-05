@@ -7,10 +7,9 @@ import pytest
 
 @pytest.mark.mandatory
 def test_classes():
-    from aibusy.engine import Engine
+    from aibusy.engine.engine import Engine
     from aibusy.engine.builder import EngineBuilder
     from aibusy.engine.settings import EngineSettings
 
     
     builder = EngineBuilder()
-    # builder.model_backends.register()
