@@ -10,7 +10,7 @@ class AssetInstallerCollection(
     def __init__(
         self
     ):
-        self._installers = {}
+        self._items: dict[type[AssetSpec], AssetInstaller] = {}
 
     def register(
         self,

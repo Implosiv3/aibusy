@@ -13,7 +13,9 @@ class KeyedCollection(
     by a key.
     """
 
-    def __init__(self):
+    def __init__(
+        self
+    ):
         self._items: dict[K, V] = {}
 
     def register(

@@ -10,16 +10,16 @@ class ResourceBuilderCollection(
     def __init__(
         self
     ):
-        self._builders: dict[type[ResourceSpec], ResourceBuilder] = {}
+        self._items: dict[type[ResourceSpec], ResourceBuilder] = {}
 
     def register(
         self,
         builder: ResourceBuilder
     ):
-        self._builders[builder.resource_type] = builder
+        self._items[builder.resource_type] = builder
 
     def get(
         self,
         resource_type: type[ResourceSpec]
     ) -> ResourceBuilder:
-        return self._builders[resource_type]
+        return self._items[resource_type]

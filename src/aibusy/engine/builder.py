@@ -114,15 +114,17 @@ class EngineBuilder:
         self._ensure_not_built()
 
         for plugin_type in plugin.dependencies:
+            if plugin_type in self._registered_plugins:
+                # TODO: Maybe just 'pass'
+                raise Exception(f'The "{plugin_type}" plugin is already installed.')
+        
             self.add_plugin(
                 plugin_type()
             )
 
-        if plugin_type in self._registered_plugins:
-            # TODO: Maybe just 'pass'
-            raise Exception(f'The "{plugin_type}" plugin is already installed.')
-
-        plugin.register(self)
+        plugin.register(
+            builder = self
+        )
 
         return self
     
@@ -187,11 +189,12 @@ class EngineBuilder:
         settings associated.
         """
         # TODO: I think this has to change
-        for installer in self._assets_installers:
+        for installer in self.assets_installers:
             installer.configure(plugin_context)
 
-        for builder in self._resources_builders:
-            builder.configure(plugin_context)
+        # TODO: This cannot be done now here
+        # for builder in self.resources_builders:
+        #     builder.configure(plugin_context)
 
         for runtime_value_resolver in list(self.runtime_value_resolvers):
             runtime_value_resolver.configure(plugin_context)
