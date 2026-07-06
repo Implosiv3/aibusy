@@ -1,7 +1,7 @@
 from aibusy.engine.execution.resource.resolver.abstract import ResourceResolver
 from aibusy.engine.execution.resource.manager import ExecutionResourceManager
 from aibusy.engine.context import EngineContext
-from aibusy.runtime.resource.spec.abstract import ResourceSpec
+from aibusy.runtime.resource.reference import ResourceReference
 from aibusy.runtime.resource.builder.collection import ResourceBuilderCollection
 
 
@@ -27,8 +27,9 @@ class DefaultResourceResolver(
 
     async def resolve(
         self,
-        spec: ResourceSpec
+        reference: ResourceReference
     ):
+        spec = reference.spec
         instance = self._manager.get_instance(spec)
 
         if instance is not None:

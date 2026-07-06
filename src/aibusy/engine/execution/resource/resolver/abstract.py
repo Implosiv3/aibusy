@@ -1,4 +1,4 @@
-from aibusy.runtime.resource.spec.abstract import ResourceSpec
+from aibusy.runtime.resource.reference import ResourceReference
 from abc import ABC, abstractmethod
 
 
@@ -13,7 +13,7 @@ class ResourceResolver(
     @abstractmethod
     async def resolve(
         self,
-        spec: ResourceSpec
+        reference: ResourceReference
     ):
         """
         Resolve the given `ResourceSpec` into a loaded

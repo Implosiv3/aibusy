@@ -71,6 +71,21 @@ RESOURCE_INSTANCE = DataType(
 )
 
 """
+AI related types below
+"""
+PROMPT = DataType(
+    name = 'Prompt',
+    runtime_type = str,
+    parent = None
+)
+TOKEN_IDS = DataType(
+    name = 'TokenIds',
+    runtime_type = object,
+    parent = None
+)
+
+
+"""
 Specific wrapping types below
 """
 AUDIO = DataType(
