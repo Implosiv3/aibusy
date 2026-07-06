@@ -16,8 +16,13 @@ class AssetInstaller(
     @abstractmethod
     async def install(
         self,
-        spec: AssetSpec
+        spec: AssetSpec,
+        install_path: str
     ) -> InstalledAsset:
+        """
+        Install the asset with the `spec` provided in
+        the `install_path` also given.
+        """
         ...
 
 

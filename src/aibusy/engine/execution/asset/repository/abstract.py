@@ -1,5 +1,6 @@
 from aibusy.engine.execution.asset.installed import InstalledAsset
 from aibusy.engine.execution.asset.spec.abstract import AssetSpec
+from pathlib import Path
 from abc import ABC, abstractmethod
 
 
@@ -14,12 +15,16 @@ class AssetRepository(
     @abstractmethod
     async def install(
         self,
-        spec: AssetSpec
+        spec: AssetSpec,
+        destination_path: Path
     ) -> InstalledAsset:
         """
         Return an InstalledAsset for the given AssetSpec.
 
         If the asset is not already installed, install it
         before returning it.
+
+        The asset will be downloaded in the 
+        `destination_path` provided.
         """
         ...

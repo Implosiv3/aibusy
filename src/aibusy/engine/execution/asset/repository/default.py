@@ -2,6 +2,7 @@ from aibusy.engine.execution.asset.repository.abstract import AssetRepository
 from aibusy.engine.execution.asset.spec.abstract import AssetSpec
 from aibusy.engine.execution.asset.installed import InstalledAsset
 from aibusy.engine.execution.asset.installer.collection import AssetInstallerCollection
+from pathlib import Path
 
 
 class DefaultAssetRepository(
@@ -23,14 +24,20 @@ class DefaultAssetRepository(
 
     async def install(
         self,
-        spec: AssetSpec
+        spec: AssetSpec,
+        destination_path: Path
     ) -> InstalledAsset:
         if spec in self._installed:
             return self._installed[spec]
 
         installer = self._installers.get(type(spec))
 
-        installed = await installer.install(spec)
+        path = spec.get_install_path(destination_path)
+
+        installed = await installer.install(
+            spec = spec,
+            install_path = path
+        )
 
         self._installed[spec] = installed
 
