@@ -12,6 +12,7 @@ from aibusy.engine.execution.asset.spec.abstract import AssetSpec
 from aibusy.engine.execution.asset.installed import InstalledAsset
 from aibusy.runtime.resource.abstract import Resource
 from aibusy.runtime.resource.spec.abstract import ResourceSpec
+from aibusy.runtime.resource.reference import ResourceReference
 from aibusy.runtime.device import Device
 from pathlib import Path
 
@@ -69,6 +70,11 @@ RESOURCE_INSTANCE = DataType(
     runtime_type = Resource,
     parent = None
 )
+RESOURCE_REFERENCE = DataType(
+    name = 'ResourceReference',
+    runtime_type = ResourceReference,
+    parent = None
+)
 
 """
 AI related types below
@@ -83,6 +89,7 @@ TOKEN_IDS = DataType(
     runtime_type = object,
     parent = None
 )
+
 
 
 """
