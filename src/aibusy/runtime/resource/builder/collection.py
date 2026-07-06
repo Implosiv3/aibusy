@@ -22,4 +22,7 @@ class ResourceBuilderCollection(
         self,
         spec_type: type[ResourceSpec]
     ) -> ResourceBuilder:
+        if spec_type not in self._items:
+            raise Exception(f'The resource with spec_type={spec_type} does not have a builder registered.')
+
         return self._items[spec_type]
