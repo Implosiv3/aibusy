@@ -19,10 +19,10 @@ class ResourceBuilder(
         ...
 
     @abstractmethod
-    def build(
+    async def build(
         self,
-        resource_spec: ResourceSpec,
-        engine_context: 'EngineContext'
+        spec: ResourceSpec,
+        context: 'ExecutionContext'
     ) -> Resource:
         ...
 
