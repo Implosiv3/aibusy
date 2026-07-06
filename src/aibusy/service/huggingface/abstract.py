@@ -15,7 +15,9 @@ class HuggingfaceClient(
         *,
         repository: str,
         revision: Union[str, None] = None,
-        local_dir: Union[str, None] = None
+        local_dir: Union[str, None] = None,
+        allow_patterns: Union[list[str], None] = None,
+        ignore_patterns: Union[list[str], None] = None,
     ) -> Path:
         """
         Download the `repository` snapshot and return

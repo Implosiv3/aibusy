@@ -37,8 +37,8 @@ class DefaultResourceResolver(
         builder = self._builders.get(type(spec))
 
         resource = await builder.build(
-            resource_spec = spec,
-            engine_context = self._engine_context
+            spec = spec,
+            context = self._engine_context
         )
 
         instance = await resource.load()

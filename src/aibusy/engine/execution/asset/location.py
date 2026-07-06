@@ -49,11 +49,16 @@ class AssetLocation:
         parsed = urlparse(self.uri)
 
         if parsed.scheme != 'file':
-            raise RuntimeError(
-                f'The asset "{self.uri}" is not stored locally.'
-            )
+            raise RuntimeError(f'The asset "{self.uri}" is not stored locally.')
+        
+        # TODO: I don't like this fix, but there is a '/' that
+        # could come at the begining when parsed if file
+        parsed_path = parsed.path
 
-        return parsed.path
+        if parsed_path.startswith('/'):
+            parsed_path = parsed_path[1:]
+
+        return parsed_path
     
     @property
     def name(

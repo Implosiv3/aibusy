@@ -16,10 +16,10 @@ class ResourceBuilderCollection(
         self,
         builder: ResourceBuilder
     ):
-        self._items[builder.resource_type] = builder
+        self._items[builder.spec_type] = builder
 
     def get(
         self,
-        resource_type: type[ResourceSpec]
+        spec_type: type[ResourceSpec]
     ) -> ResourceBuilder:
-        return self._items[resource_type]
+        return self._items[spec_type]

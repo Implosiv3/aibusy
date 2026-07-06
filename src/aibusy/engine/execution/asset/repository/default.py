@@ -32,11 +32,9 @@ class DefaultAssetRepository(
 
         installer = self._installers.get(type(spec))
 
-        path = spec.get_install_path(destination_path)
-
         installed = await installer.install(
             spec = spec,
-            install_path = path
+            install_path = destination_path
         )
 
         self._installed[spec] = installed

@@ -39,8 +39,8 @@ class ExecutionContext:
         Execution-local resource manager.
         """
         self.resources = DefaultResourceResolver(
-            builders = self.engine.resource_builders,
-            manager = self.resource_manager,
+            resource_builders = self.engine.resource_builders,
+            resource_manager = self.resource_manager,
             engine_context = self.engine
         )
         """
