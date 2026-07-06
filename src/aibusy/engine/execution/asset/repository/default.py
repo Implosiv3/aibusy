@@ -19,7 +19,7 @@ class DefaultAssetRepository(
         installers: AssetInstallerCollection
     ):
         self._installers = installers
-        self._installed: dict[AssetSpec, InstalledAsset]
+        self._installed: dict[AssetSpec, InstalledAsset] = {}
 
     async def install(
         self,

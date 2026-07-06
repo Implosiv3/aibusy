@@ -1,6 +1,6 @@
 from aibusy.engine.plugin.abstract import Plugin
 from aibusy.engine.engine import Engine
-from aibusy.engine.context.engine import EngineContext
+from aibusy.engine.context import EngineContext
 from aibusy.graph.builder import GraphBuilder
 from aibusy.engine.cache.memory_cache import MemoryCache
 from aibusy.engine.execution.operation_runner.local_operation_runner import LocalOperationRunner
@@ -45,6 +45,7 @@ class EngineBuilder:
         from aibusy.runtime.resource.builder.collection import ResourceBuilderCollection
         from aibusy.engine.execution.runtime.value_resolver.collection import RuntimeValueResolverCollection
 
+        self.settings = EngineSettings()
         self.services = ServiceContainer()
         self.schedulers = SchedulerCollection()
         self.runtime_value_resolvers = RuntimeValueResolverCollection()
@@ -57,7 +58,7 @@ class EngineBuilder:
         self._registered_plugins = {}
         
         # Add basic RuntimeValueResolver
-        self.runtime_value_resolvers.register(PortReferenceRuntimeValueResolver)
+        self.runtime_value_resolvers.register(PortReferenceRuntimeValueResolver())
 
         self._instantiate_executor()
 
@@ -159,7 +160,7 @@ class EngineBuilder:
         self._configure_components(plugin_context)
 
         asset_repository = DefaultAssetRepository(
-            installers = self._assets_installers
+            installers = self.assets_installers
         )
 
         # resource_resolver = DefaultResourceResolver(
@@ -172,7 +173,7 @@ class EngineBuilder:
             services = self.services,
             assets = asset_repository,
             # resources = resource_resolver,
-            resource_builders = self._resources_builders,
+            resource_builders = self.resources_builders,
             schedulers = self.schedulers,
         )
     
@@ -189,15 +190,15 @@ class EngineBuilder:
         settings associated.
         """
         # TODO: I think this has to change
-        for installer in self.assets_installers:
-            installer.configure(plugin_context)
+        # for installer in self.assets_installers:
+        #     installer.configure(plugin_context)
 
         # TODO: This cannot be done now here
         # for builder in self.resources_builders:
         #     builder.configure(plugin_context)
 
-        for runtime_value_resolver in list(self.runtime_value_resolvers):
-            runtime_value_resolver.configure(plugin_context)
+        # for runtime_value_resolver in list(self.runtime_value_resolvers):
+        #     runtime_value_resolver.configure(plugin_context)
 
         # components = [
         #     *self._runtime_value_resolvers.values(),

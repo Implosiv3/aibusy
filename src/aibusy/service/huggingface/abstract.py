@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+from pathlib import Path
 from typing import Union
 
 
@@ -14,7 +15,8 @@ class HuggingfaceClient(
         *,
         repository: str,
         revision: Union[str, None] = None,
-    ) -> str:
+        local_dir: Union[str, None] = None
+    ) -> Path:
         """
         Download the `repository` snapshot and return
         the local directory where it has been installed.

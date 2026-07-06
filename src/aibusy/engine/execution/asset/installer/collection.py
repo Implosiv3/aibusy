@@ -16,10 +16,10 @@ class AssetInstallerCollection(
         self,
         installer: AssetInstaller
     ):
-        self._installers[installer.spec_type] = installer
+        self._items[installer.spec_type] = installer
 
     def get(
         self,
         spec_type: type[AssetSpec]
     ) -> AssetInstaller:
-        return self._installers[spec_type]
+        return self._items[spec_type]

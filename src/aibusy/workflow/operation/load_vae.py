@@ -29,7 +29,10 @@ class LoadVAE(
             dtype = self.dtype,
         )
 
-        vae = await context.engine.resources.resolve(spec)
+        vae = await context.engine.resources.resolve(
+            spec = spec,
+            context = context
+        )
 
         return {
             'vae': vae

@@ -28,7 +28,10 @@ class LoadUNet(
             dtype = self.dtype,
         )
 
-        unet = await context.engine.resources.resolve(spec)
+        unet = await context.engine.resources.resolve(
+            spec = spec,
+            context = context
+        )
 
         return {
             'unet': unet

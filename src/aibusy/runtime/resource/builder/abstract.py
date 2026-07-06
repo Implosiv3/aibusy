@@ -21,7 +21,8 @@ class ResourceBuilder(
     @abstractmethod
     def build(
         self,
-        spec: ResourceSpec
+        resource_spec: ResourceSpec,
+        engine_context: 'EngineContext'
     ) -> Resource:
         ...
 

@@ -1,4 +1,4 @@
-from aibusy.engine.context.engine import EngineContext
+from aibusy.engine.context import EngineContext
 from aibusy.graph.operation.abstract.base import Operation
 from aibusy.engine.execution.resource.manager import ExecutionResourceManager
 from aibusy.engine.execution.resource.resolver.default import DefaultResourceResolver
@@ -41,6 +41,7 @@ class ExecutionContext:
         self.resources = DefaultResourceResolver(
             builders = self.engine.resource_builders,
             manager = self.resource_manager,
+            engine_context = self.engine
         )
         """
         Execution-local resource resolver.

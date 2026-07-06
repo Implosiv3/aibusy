@@ -13,16 +13,16 @@ class EngineSettings:
     """
 
     models_directory: Path = field(
-        # default_factory = lambda: Path.home() / '.ai_simple_engine' / 'models'
-        default_factory = lambda: os.getenv('MODELS_DIRECTORY', Path.home() / '.ai_simple_engine' / 'models')
+        # default_factory = lambda: Path.home() / '.aibusy' / 'models'
+        default_factory = lambda: os.getenv('MODELS_DIRECTORY', Path.home() / '.aibusy' / 'models')
     )
 
     cache_directory: Path = field(
-        # default_factory = lambda: Path.home() / '.ai_simple_engine' / 'cache'
-        default_factory = lambda: os.getenv('CACHE_DIRECTORY', Path.home() / '.ai_simple_engine' / 'cache')
+        # default_factory = lambda: Path.home() / '.aibusy' / 'cache'
+        default_factory = lambda: os.getenv('CACHE_DIRECTORY', Path.home() / '.aibusy' / 'cache')
     )
 
     temporary_directory: Path = field(
-        # default_factory = lambda: Path(tempfile.gettempdir()) / 'ai_simple_engine'
-        default_factory = lambda: os.getenv('TEMPORARY_DIRECTORY', Path(tempfile.gettempdir()) / 'ai_simple_engine')
+        # default_factory = lambda: Path(tempfile.gettempdir()) / 'aibusy'
+        default_factory = lambda: os.getenv('TEMPORARY_DIRECTORY', Path(tempfile.gettempdir()) / 'aibusy')
     )
