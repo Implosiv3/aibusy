@@ -11,4 +11,4 @@ class ResourceReference:
     that will identify it and load it.
     """
 
-    spec: ResourceSpec
+    resource_spec: ResourceSpec

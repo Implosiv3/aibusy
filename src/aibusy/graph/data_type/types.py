@@ -70,8 +70,28 @@ RESOURCE_INSTANCE = DataType(
     runtime_type = Resource,
     parent = None
 )
-RESOURCE_REFERENCE = DataType(
-    name = 'ResourceReference',
+TOKENIZER_REFERENCE = DataType(
+    name = 'TokenizerReference',
+    runtime_type = ResourceReference,
+    parent = None
+)
+TEXT_ENCODER_REFERENCE = DataType(
+    name = 'TextEncoderReference',
+    runtime_type = ResourceReference,
+    parent = None
+)
+UNET_REFERENCE = DataType(
+    name = 'UNetReference',
+    runtime_type = ResourceReference,
+    parent = None
+)
+VAE_REFERENCE = DataType(
+    name = 'VAEReference',
+    runtime_type = ResourceReference,
+    parent = None
+)
+SCHEDULER_REFERENCE = DataType(
+    name = 'SchedulerReference',
     runtime_type = ResourceReference,
     parent = None
 )
