@@ -12,7 +12,7 @@ class Latents:
     model uses to generate outputs.
     """
     
-    instance: object
+    value: object
 
 
 """

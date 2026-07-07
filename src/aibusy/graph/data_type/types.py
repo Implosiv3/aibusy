@@ -10,6 +10,8 @@ from aibusy.graph.data_type.custom_classes.image import Image
 from aibusy.graph.data_type.custom_classes.video import Video
 from aibusy.engine.execution.asset.spec.abstract import AssetSpec
 from aibusy.utils.classes.prompt_embeddings import PromptEmbeddings
+from aibusy.utils.classes.noise import Noise
+from aibusy.utils.classes.latents import Latents
 from aibusy.engine.execution.asset.installed import InstalledAsset
 from aibusy.runtime.resource.abstract import Resource
 from aibusy.runtime.resource.spec.abstract import ResourceSpec
@@ -86,23 +88,39 @@ PROMPT_EMBEDDINGS = DataType(
     runtime_type = PromptEmbeddings,
     parent = None
 )
+NOISE = DataType(
+    name = 'Noise',
+    runtime_type = Noise,
+    parent = None
+)
+LATENTS = DataType(
+    name = 'Latents',
+    runtime_type = Latents,
+    parent = None
+)
 CLIP_PROMPT_ENCODER_RESOURCE_REFERENCE = DataType(
-    name = 'CLIPPromptEncoderReference',
+    name = 'CLIPPromptEncoderResourceReference',
     runtime_type = ResourceReference,
     parent = None
 )
-UNET_REFERENCE = DataType(
-    name = 'UNetReference',
+GAUSSIAN_NOISE_GENERATOR_RESOURCE_REFERENCE = DataType(
+    name = 'GaussianNoiseGeneratorResourceReference',
     runtime_type = ResourceReference,
     parent = None
 )
-VAE_REFERENCE = DataType(
-    name = 'VAEReference',
+
+UNET_RESOURCE_REFERENCE = DataType(
+    name = 'UNetResourceReference',
     runtime_type = ResourceReference,
     parent = None
 )
-SCHEDULER_REFERENCE = DataType(
-    name = 'SchedulerReference',
+VAE_RESOURCE_REFERENCE = DataType(
+    name = 'VAEResourceReference',
+    runtime_type = ResourceReference,
+    parent = None
+)
+SCHEDULER_RESOURCE_REFERENCE = DataType(
+    name = 'SchedulerResourceReference',
     runtime_type = ResourceReference,
     parent = None
 )
