@@ -10,7 +10,6 @@ from aibusy.graph.data_type.custom_classes.image import Image
 from aibusy.graph.data_type.custom_classes.video import Video
 from aibusy.engine.execution.asset.spec.abstract import AssetSpec
 from aibusy.utils.classes.prompt_embeddings import PromptEmbeddings
-from aibusy.utils.classes.token_ids import TokenIds
 from aibusy.engine.execution.asset.installed import InstalledAsset
 from aibusy.runtime.resource.abstract import Resource
 from aibusy.runtime.resource.spec.abstract import ResourceSpec

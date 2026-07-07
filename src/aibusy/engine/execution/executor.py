@@ -7,7 +7,7 @@ from aibusy.engine.execution.exceptions import ExecutionError
 from aibusy.engine.execution.planner import ExecutionPlanner
 from aibusy.engine.execution.context import ExecutionContext
 from aibusy.engine.execution.operation_runner.abstract import OperationRunner
-from aibusy.engine.execution.runtime.value_resolver.abstract import RuntimeValueResolver
+from aibusy.engine.execution.runtime.value_resolver.collection import RuntimeValueResolverCollection
 from collections.abc import Mapping, Sequence
 from typing import Iterable, Union
 
@@ -23,7 +23,7 @@ class Executor:
         *,
         graph_builder: GraphBuilder,
         operation_runner: OperationRunner,
-        runtime_value_resolvers: dict[type, RuntimeValueResolver]
+        runtime_value_resolvers: RuntimeValueResolverCollection
     ):
         self._graph_builder = graph_builder
         self._validator = GraphValidator()
@@ -116,7 +116,7 @@ class Executor:
         on our resolvers, so we could add something in
         the future and we just need to add the resolver.
         """
-        for resolver in self._runtime_values_resolvers.values():
+        for resolver in self._runtime_values_resolvers:
             if resolver.is_supported(value):
                 resolved = await resolver.resolve(
                     value,
