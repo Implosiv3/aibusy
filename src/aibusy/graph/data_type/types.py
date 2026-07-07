@@ -9,6 +9,8 @@ from aibusy.graph.data_type.custom_classes.audio import Audio
 from aibusy.graph.data_type.custom_classes.image import Image
 from aibusy.graph.data_type.custom_classes.video import Video
 from aibusy.engine.execution.asset.spec.abstract import AssetSpec
+from aibusy.utils.classes.prompt_embeddings import PromptEmbeddings
+from aibusy.utils.classes.token_ids import TokenIds
 from aibusy.engine.execution.asset.installed import InstalledAsset
 from aibusy.runtime.resource.abstract import Resource
 from aibusy.runtime.resource.spec.abstract import ResourceSpec
@@ -70,13 +72,23 @@ RESOURCE_INSTANCE = DataType(
     runtime_type = Resource,
     parent = None
 )
-TOKENIZER_REFERENCE = DataType(
-    name = 'TokenizerReference',
-    runtime_type = ResourceReference,
+
+
+"""
+AI related types below
+"""
+PROMPT = DataType(
+    name = 'Prompt',
+    runtime_type = str,
     parent = None
 )
-TEXT_ENCODER_REFERENCE = DataType(
-    name = 'TextEncoderReference',
+PROMPT_EMBEDDINGS = DataType(
+    name = 'PromptEmbeddings',
+    runtime_type = PromptEmbeddings,
+    parent = None
+)
+CLIP_PROMPT_ENCODER_RESOURCE_REFERENCE = DataType(
+    name = 'CLIPPromptEncoderReference',
     runtime_type = ResourceReference,
     parent = None
 )
@@ -93,20 +105,6 @@ VAE_REFERENCE = DataType(
 SCHEDULER_REFERENCE = DataType(
     name = 'SchedulerReference',
     runtime_type = ResourceReference,
-    parent = None
-)
-
-"""
-AI related types below
-"""
-PROMPT = DataType(
-    name = 'Prompt',
-    runtime_type = str,
-    parent = None
-)
-TOKEN_IDS = DataType(
-    name = 'TokenIds',
-    runtime_type = object,
     parent = None
 )
 

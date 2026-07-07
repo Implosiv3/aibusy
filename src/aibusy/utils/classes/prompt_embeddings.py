@@ -6,10 +6,8 @@ class PromptEmbeddings:
     """
     *Dataclass*
 
-    Class to include the `positive` and the
-    `negative` prompt embeddings at the same
-    time.
+    Class to include the embeddings of the
+    prompt.
     """
 
-    positive: object
-    negative: object
+    value: object
