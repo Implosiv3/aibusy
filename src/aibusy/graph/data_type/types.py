@@ -11,6 +11,7 @@ from aibusy.graph.data_type.custom_classes.video import Video
 from aibusy.engine.execution.asset.spec.abstract import AssetSpec
 from aibusy.utils.classes.prompt_embeddings import PromptEmbeddings
 from aibusy.utils.classes.noise import Noise
+from aibusy.utils.classes.predicted_noise import PredictedNoise
 from aibusy.utils.classes.latents import Latents
 from aibusy.engine.execution.asset.installed import InstalledAsset
 from aibusy.runtime.resource.abstract import Resource
@@ -91,6 +92,11 @@ PROMPT_EMBEDDINGS = DataType(
 NOISE = DataType(
     name = 'Noise',
     runtime_type = Noise,
+    parent = None
+)
+PREDICTED_NOISE = DataType(
+    name = 'PredictedNoise',
+    runtime_type = PredictedNoise,
     parent = None
 )
 LATENTS = DataType(

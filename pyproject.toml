@@ -1,6 +1,6 @@
 [project]
 name = "aibusy"
-version = "0.0.18"
+version = "0.0.19"
 description = "AI but symple - Base Module"
 authors = [
     {name = "danialcala94", email = "danielalcalavalera@gmail.com"}
