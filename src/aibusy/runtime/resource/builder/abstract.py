@@ -21,7 +21,7 @@ class ResourceBuilder(
     @abstractmethod
     async def build(
         self,
-        spec: ResourceSpec,
+        resource_spec: ResourceSpec,
         context: 'ExecutionContext'
     ) -> Resource:
         ...
